@@ -139,16 +139,15 @@ export default function Home() {
     >
       {/* 
         FUNDO DESFOCADO DE ALTA QUALIDADE (Estilo Gamma Slides)
-        Colocamos uma div absoluta com z-0 e uma imagem de alta qualidade com desfoque de 50% (blur-[30px]).
-        Deixamos a opacidade em 25% (opacity-25) para que o fundo continue muito sutil,
-        sem atrapalhar a leitura do texto ou contrastar demais com as cores laranja e branca.
+        Colocamos uma div absoluta com z-[-1] e uma imagem de alta qualidade com desfoque de 50% (blur-[20px]).
+        Aumentamos a opacidade para 60% (opacity-60) para garantir que seja bem visível mesmo em telas escuras.
         A largura w-[110%] e as posições negativas previnem o efeito de borda vazada do desfoque.
       */}
-      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none z-[-1] overflow-hidden">
         <img
           src="/assets/background.jpeg"
           alt="Fundo Desfocado do Circuito"
-          className="w-[110%] h-[110%] object-cover opacity-25 blur-[30px] absolute -top-[5%] -left-[5%] select-none"
+          className="w-[110%] h-[110%] object-cover opacity-60 blur-[20px] absolute -top-[5%] -left-[5%] select-none"
         />
       </div>
 
