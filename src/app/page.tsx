@@ -141,9 +141,13 @@ export default function Home() {
       {/* 5. BARRA DE CABEÇALHO DO APP */}
       <header className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-neutral-900 pb-3 shrink-0 gap-2 select-none z-10">
         <div className="flex items-center space-x-2">
-          {/* Caixa de circuito estilizada no header */}
-          <div className="p-1 rounded bg-neutral-900 border border-neutral-800">
-            <Cpu className="w-4 h-4 text-white" />
+          {/* Caixa de circuito estilizada no header com a nossa logo customizada */}
+          <div className="p-0.5 rounded bg-neutral-900 border border-neutral-850 overflow-hidden w-6 h-6 flex items-center justify-center shrink-0">
+            <img
+              src="/assets/logo.jpeg"
+              alt="Logo do Projeto"
+              className="w-full h-full object-cover rounded-sm"
+            />
           </div>
           {/* Usamos font-saira para títulos destacados técnicos */}
           <h1 className="font-saira text-[11px] font-semibold tracking-[0.25em] text-neutral-200 uppercase">

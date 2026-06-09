@@ -34,39 +34,32 @@ body {
 }
 
 /* 
-  EFEITO ESPACIAL (Fundo Estrelado - Estilo Slides do Gamma)
+  EFEITO ESPACIAL (Fundo Desfocado - Estilo Slides do Gamma)
   Usamos o pseudo-elemento ::before para injetar uma camada invisível a cliques (pointer-events: none),
   posicionada de forma fixa (fixed) cobrindo toda a janela do navegador.
   
-  Criamos os pontinhos brancos (estrelas) usando gradientes radiais empilhados.
-  Cada radial-gradient desenha um mini círculo branco em uma porcentagem específica (ex: 15% da largura, 20% da altura).
-  Depois mandamos o background-size repetir esse padrão a cada 400px por 400px.
+  Carregamos o background.jpeg do nosso projeto, colocamos background-size: cover,
+  background-position: center, aplicamos filter: blur(30px) para gerar 50% de desfoque,
+  e deixamos a opacidade bem sutil (opacity: 0.25) para que o fundo preserve totalmente 
+  o contraste das letras branca e laranja e garanta uma leitura impecável.
   
-  A opacidade fica em 0.1 (apenas 10% de brilho) para que as estrelas fiquem super sutis 
-  e não concorram visualmente com a nossa interface ou com o contraste das letras branca e laranja.
+  Também estendemos a caixa com margens negativas (top/left/right/bottom: -20px) para que
+  as bordas desfocadas não vazem a tela de fundo (evitando o efeito de bordas brancas/transparentes).
 */
 body::before {
   content: "";
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  bottom: -20px;
   pointer-events: none;
-  z-index: 0;
-  background-image: 
-    radial-gradient(1px 1px at 15% 20%, #ffffff 100%, transparent),
-    radial-gradient(1.2px 1.2px at 35% 45%, #ffffff 80%, transparent),
-    radial-gradient(1px 1px at 55% 70%, #ffffff 100%, transparent),
-    radial-gradient(1.5px 1.5px at 75% 30%, #ffffff 90%, transparent),
-    radial-gradient(1px 1px at 90% 85%, #ffffff 100%, transparent),
-    radial-gradient(1.2px 1.2px at 80% 15%, #ffffff 70%, transparent),
-    radial-gradient(1px 1px at 65% 80%, #ffffff 100%, transparent),
-    radial-gradient(1.5px 1.5px at 20% 90%, #ffffff 90%, transparent),
-    radial-gradient(2px 2px at 10% 75%, #ffffff 80%, transparent),
-    radial-gradient(1px 1px at 85% 60%, #ffffff 100%, transparent);
-  background-size: 400px 400px;
-  opacity: 0.1;
+  z-index: -1;
+  background-image: url("/assets/background.jpeg");
+  background-size: cover;
+  background-position: center;
+  filter: blur(30px);
+  opacity: 0.25;
 }
 
 /* 
