@@ -73,7 +73,7 @@ export default function TruthTable({ valA, valS, valT }: TruthTableProps) {
   return (
     <div
       ref={containerRef}
-      className="w-full h-full rounded-xl border-2 border-neutral-700/70 bg-neutral-950/40 p-3.5 flex flex-col justify-between"
+      className="w-full lg:h-full rounded-xl border-2 border-neutral-700/70 bg-neutral-950/40 p-3.5 flex flex-col justify-between"
     >
       {/* Título do painel usando a fonte Saira (Medium) e o estilo de circuito */}
       <div className="flex items-center space-x-2 select-none mb-1.5">
@@ -84,12 +84,12 @@ export default function TruthTable({ valA, valS, valT }: TruthTableProps) {
       </div>
 
       {/* Conteúdo da Tabela */}
-      <div className="overflow-hidden flex-1 flex flex-col justify-center">
+      <div className="overflow-x-auto flex-1 flex flex-col justify-center">
         {/* Forçamos a fonte Roboto nas células para ficar com cara de folha técnica organizada */}
-        <table className="w-full border-collapse text-left font-roboto text-[11px] select-none">
+        <table className="w-full border-collapse text-left font-roboto text-xs sm:text-sm select-none">
           <thead>
             {/* Cabeçalho da tabela com fonte mono e cores cinza */}
-            <tr className="text-neutral-500 border-b border-neutral-800 font-mono text-[10px]">
+            <tr className="text-neutral-500 border-b border-neutral-800 font-mono text-xs sm:text-sm">
               <th className="pb-1 px-2">ESTADO</th>
               <th className="pb-1 px-2 text-center">A</th>
               <th className="pb-1 px-2 text-center">S</th>
@@ -119,7 +119,7 @@ export default function TruthTable({ valA, valS, valT }: TruthTableProps) {
                     {row.l}
                   </td>
                   {/* Exibe o status legível da saída */}
-                  <td className="py-[3px] px-2 text-right font-sans text-[9px] tracking-wider uppercase font-semibold">
+                  <td className="py-[3px] px-2 text-right font-sans text-xs sm:text-sm tracking-wider uppercase font-semibold">
                     {row.l === 1 ? "Liberado" : "Negado"}
                   </td>
                 </tr>

@@ -150,11 +150,11 @@ export default function Home() {
       {/* Camada 10: O Software */}
       <main
         ref={containerRef}
-        className="relative z-10 flex h-screen w-full flex-col overflow-hidden bg-transparent p-4 md:p-6 justify-between space-y-4 font-roboto text-white"
+        className="relative z-10 w-full bg-transparent font-roboto text-white min-h-screen overflow-y-auto overflow-x-hidden p-4 flex flex-col gap-4 lg:h-screen lg:overflow-hidden lg:grid lg:grid-cols-2 lg:grid-rows-[auto_1fr_auto] lg:p-8 lg:gap-4"
       >
 
       {/* 5. BARRA DE CABEÇALHO DO APP */}
-      <header className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-neutral-900 pb-3 shrink-0 gap-2 select-none z-10">
+      <header className="lg:col-span-2 flex flex-col sm:flex-row sm:items-center justify-between border-b border-neutral-900 pb-3 shrink-0 gap-2 select-none z-10">
         <div className="flex items-center space-x-2">
           {/* Caixa de circuito estilizada no header com a nossa logo customizada */}
           <div className="p-0.5 rounded bg-neutral-900 border border-neutral-850 overflow-hidden w-6 h-6 flex items-center justify-center shrink-0">
@@ -177,10 +177,10 @@ export default function Home() {
       </header>
 
       {/* 6. GRADE BENTO BOX (LAYOUT DE PAINEL ÚNICO NO DESKTOP) */}
-      <main className="flex-1 grid grid-cols-1 md:grid-cols-12 gap-4 min-h-0 z-10">
+      <main className="lg:col-span-2 flex-1 w-full flex flex-col gap-4 lg:grid lg:grid-cols-12 lg:min-h-0 z-10">
 
         {/* COLUNA DA ESQUERDA - 5/12 DA LARGURA */}
-        <div className="md:col-span-5 flex flex-col gap-4 h-full min-h-0">
+        <div className="w-full flex flex-col gap-4 lg:col-span-5 lg:h-full lg:min-h-0">
           {/* MÓDULO 1: PAINEL DE CONTROLE (Compacto, sem espaço sobrando) */}
           <section className="bento-box flex-none p-4 rounded-xl border-2 border-neutral-700/70 bg-neutral-950/40 space-y-4">
             <div className="space-y-3.5">
@@ -237,7 +237,7 @@ export default function Home() {
           </section>
 
           {/* MÓDULO 3: TABELA-VERDADE COMPACTA (Ocupa o resto da coluna esquerda) */}
-          <section className="bento-box flex-1 min-h-0">
+          <section className="bento-box lg:flex-1 lg:min-h-0 w-full">
             <TruthTable
               valA={valA}
               valS={valS}
@@ -247,10 +247,10 @@ export default function Home() {
         </div>
 
         {/* COLUNA DA DIREITA (7/12 DA LARGURA) */}
-        <div className="md:col-span-7 flex flex-col gap-4 h-full min-h-0">
+        <div className="w-full flex flex-col gap-4 lg:col-span-7 lg:h-full lg:min-h-0">
 
           {/* MÓDULO 2: VISOR DE STATUS (Compacto) */}
-          <section className="bento-box flex-none">
+          <section className="bento-box flex-none w-full">
             <StatusDisplay
               valA={valA}
               valS={valS}
@@ -260,7 +260,7 @@ export default function Home() {
           </section>
 
           {/* MÓDULO 4: TERMINAL DE LOGS DE AUDITORIA (Ocupa o resto da coluna da direita) */}
-          <section className="bento-box flex-1 min-h-0">
+          <section className="bento-box lg:flex-1 lg:min-h-0 w-full">
             <AuditLog logs={logs} />
           </section>
 
@@ -269,7 +269,7 @@ export default function Home() {
       </main>
 
       {/* 7. RODAPÉ DO SIMULADOR (RODAPÉ ATUALIZADO SEM LABELS EXCESSIVOS) */}
-      <footer className="w-full border-t border-neutral-900 pt-2 text-center text-[10px] font-mono text-neutral-500 select-none flex flex-col sm:flex-row items-center justify-between shrink-0 gap-3 z-10">
+      <footer className="lg:col-span-2 w-full border-t border-neutral-900 pt-2 text-center text-[10px] font-mono text-neutral-500 select-none flex flex-col sm:flex-row items-center justify-between shrink-0 gap-3 z-10">
 
         {/* Lado esquerdo: Versão do Simulador */}
         <div className="flex items-center space-x-2">

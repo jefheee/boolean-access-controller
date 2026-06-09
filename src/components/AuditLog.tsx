@@ -52,7 +52,7 @@ export default function AuditLog({ logs }: AuditLogProps) {
   }, [logs]);
 
   return (
-    <div className="w-full h-full rounded-xl border-2 border-neutral-700/70 bg-neutral-950/40 p-3.5 flex flex-col justify-between space-y-2">
+    <div className="w-full lg:h-full rounded-xl border-2 border-neutral-700/70 bg-neutral-950/40 p-3.5 flex flex-col justify-between space-y-2">
       
       {/* Cabeçalho do Terminal */}
       <div className="flex items-center justify-between select-none">
@@ -70,7 +70,7 @@ export default function AuditLog({ logs }: AuditLogProps) {
       {/* Janela de Logs com fundo bem escuro e fonte monospace clássica */}
       <div
         ref={scrollRef}
-        className="flex-1 w-full overflow-y-auto scrollbar-thin scrollbar-thumb-neutral-800 scrollbar-track-transparent rounded bg-neutral-950 border border-neutral-900 p-2 font-mono text-[10px] text-neutral-400 space-y-1 select-none min-h-[140px] max-h-[180px] md:max-h-none"
+        className="flex-1 w-full overflow-y-auto scrollbar-thin scrollbar-thumb-neutral-800 scrollbar-track-transparent rounded bg-neutral-950 border border-neutral-900 p-2 font-mono text-[10px] text-neutral-400 space-y-1 select-none min-h-[140px] max-h-48 lg:max-h-none"
       >
         {logs.length === 0 ? (
           // Mensagem caso não tenha acontecido nenhuma ação ainda.

@@ -111,7 +111,7 @@ export default function StatusDisplay({
   }, [valL]);
 
   return (
-    <div className="flex flex-col h-full justify-between p-4 rounded-xl border-2 border-neutral-700/70 bg-neutral-950/40 space-y-3">
+    <div className="flex flex-col lg:h-full justify-between p-4 rounded-xl border-2 border-neutral-700/70 bg-neutral-950/40 space-y-3">
       
       {/* Cabeçalho da visualização */}
       <div className="space-y-2">
@@ -133,7 +133,7 @@ export default function StatusDisplay({
         
         {/* Monospace display mostrando a fórmula lógica ativa e pintando as variáveis acesas em laranja! */}
         <div className="py-2.5 px-4 rounded-lg bg-neutral-950 border border-neutral-800 flex justify-center items-center">
-          <code className="text-base font-mono tracking-wider select-none">
+          <code className="text-xl sm:text-2xl lg:text-3xl font-mono tracking-wider select-none">
             {/* O resultado final (L). Se for 1, brilha em laranja. */}
             <span
               className={`transition-all duration-200 ${
