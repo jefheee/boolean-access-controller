@@ -135,24 +135,23 @@ export default function Home() {
   }, [valA, valS, valT]); // Ouve a alteração de qualquer uma das chaves físicas de entrada.
 
   return (
-    <div
-      ref={containerRef}
-      className="min-h-screen md:h-screen md:overflow-hidden bg-transparent text-white flex flex-col justify-between p-4 md:p-6 font-roboto space-y-4 relative"
-    >
-      {/* 
-        FUNDO DESFOCADO DE ALTA QUALIDADE (Estilo Gamma Slides)
-        Componente de fundo fixed para travar na janela (viewport) usando o Image do Next.js.
-        Isso garante o carregamento correto da imagem da pasta public.
-      */}
-      <div className="fixed inset-0 pointer-events-none z-[-1] bg-black">
+    <>
+      {/* Camada 0: O Fundo Estrelado */}
+      <div className="fixed inset-0 pointer-events-none z-0 bg-black">
         <Image
           src="/assets/background.jpeg"
           alt="Fundo"
           fill
           priority
-          className="object-cover opacity-30 blur-[10px]"
+          className="object-cover opacity-30 blur-[1px]"
         />
       </div>
+
+      {/* Camada 10: O Software */}
+      <main
+        ref={containerRef}
+        className="relative z-10 flex h-screen w-full flex-col overflow-hidden bg-transparent p-4 md:p-6 justify-between space-y-4 font-roboto text-white"
+      >
 
       {/* 5. BARRA DE CABEÇALHO DO APP */}
       <header className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-neutral-900 pb-3 shrink-0 gap-2 select-none z-10">
@@ -181,7 +180,7 @@ export default function Home() {
       <main className="flex-1 grid grid-cols-1 md:grid-cols-12 gap-4 min-h-0 z-10">
 
         {/* MÓDULO 1: PAINEL DE CONTROLE (COLUNA DA ESQUERDA - 5/12 DA LARGURA) */}
-        <section className="bento-box md:col-span-5 h-full flex flex-col justify-between p-4 rounded-xl border border-neutral-850 bg-neutral-950/20 backdrop-blur-sm space-y-4">
+        <section className="bento-box md:col-span-5 h-full flex flex-col justify-between p-4 rounded-xl border border-neutral-850 bg-neutral-950/40 space-y-4">
           <div className="space-y-3.5">
             {/* Título do painel em fonte Saira */}
             <div className="flex items-center justify-between select-none">
@@ -374,6 +373,7 @@ export default function Home() {
         </div>
       </div>
 
-    </div>
+      </main>
+    </>
   );
 }
