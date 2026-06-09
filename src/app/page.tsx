@@ -5,6 +5,8 @@
 // - useEffect: roda um código extra sempre que alguma variável específica mudar (bom para gerar novos logs!).
 // - useRef: cria uma "âncora" para elementos do HTML para podermos manipulá-los no GSAP ou no scroll.
 import React, { useState, useEffect, useRef } from "react";
+// Importamos o componente Image nativo do Next.js para carregar assets do public com otimização e controle de erros.
+import Image from "next/image";
 
 // Aqui importamos os nossos componentes filhos que criamos e refatoramos.
 import ToggleSwitch from "@/components/ToggleSwitch";
@@ -139,15 +141,16 @@ export default function Home() {
     >
       {/* 
         FUNDO DESFOCADO DE ALTA QUALIDADE (Estilo Gamma Slides)
-        Colocamos uma div absoluta com z-[-1] e uma imagem de alta qualidade com desfoque de 50% (blur-[20px]).
-        Aumentamos a opacidade para 60% (opacity-60) para garantir que seja bem visível mesmo em telas escuras.
-        A largura w-[110%] e as posições negativas previnem o efeito de borda vazada do desfoque.
+        Componente de fundo fixed para travar na janela (viewport) usando o Image do Next.js.
+        Isso garante o carregamento correto da imagem da pasta public.
       */}
-      <div className="absolute inset-0 pointer-events-none z-[-1] overflow-hidden">
-        <img
+      <div className="fixed inset-0 pointer-events-none z-[-1] bg-black">
+        <Image
           src="/assets/background.jpeg"
-          alt="Fundo Desfocado do Circuito"
-          className="w-[110%] h-[110%] object-cover opacity-60 blur-[20px] absolute -top-[5%] -left-[5%] select-none"
+          alt="Fundo"
+          fill
+          priority
+          className="object-cover opacity-30 blur-[10px]"
         />
       </div>
 
@@ -156,9 +159,11 @@ export default function Home() {
         <div className="flex items-center space-x-2">
           {/* Caixa de circuito estilizada no header com a nossa logo customizada */}
           <div className="p-0.5 rounded bg-neutral-900 border border-neutral-850 overflow-hidden w-6 h-6 flex items-center justify-center shrink-0">
-            <img
+            <Image
               src="/assets/logo.jpeg"
-              alt="Logo do Projeto"
+              alt="Logo"
+              width={24}
+              height={24}
               className="w-full h-full object-cover rounded-sm"
             />
           </div>
