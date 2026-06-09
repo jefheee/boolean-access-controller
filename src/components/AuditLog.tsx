@@ -52,7 +52,7 @@ export default function AuditLog({ logs }: AuditLogProps) {
   }, [logs]);
 
   return (
-    <div className="w-full h-full rounded-xl border border-neutral-850 bg-neutral-950/40 p-3.5 flex flex-col justify-between space-y-2">
+    <div className="w-full h-full rounded-xl border-2 border-neutral-700/70 bg-neutral-950/40 p-3.5 flex flex-col justify-between space-y-2">
       
       {/* Cabeçalho do Terminal */}
       <div className="flex items-center justify-between select-none">

@@ -111,7 +111,7 @@ export default function StatusDisplay({
   }, [valL]);
 
   return (
-    <div className="flex flex-col h-full justify-between p-4 rounded-xl border border-neutral-850 bg-neutral-950/40 space-y-3">
+    <div className="flex flex-col h-full justify-between p-4 rounded-xl border-2 border-neutral-700/70 bg-neutral-950/40 space-y-3">
       
       {/* Cabeçalho da visualização */}
       <div className="space-y-2">

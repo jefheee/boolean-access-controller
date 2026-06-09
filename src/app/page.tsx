@@ -179,66 +179,78 @@ export default function Home() {
       {/* 6. GRADE BENTO BOX (LAYOUT DE PAINEL ÚNICO NO DESKTOP) */}
       <main className="flex-1 grid grid-cols-1 md:grid-cols-12 gap-4 min-h-0 z-10">
 
-        {/* MÓDULO 1: PAINEL DE CONTROLE (COLUNA DA ESQUERDA - 5/12 DA LARGURA) */}
-        <section className="bento-box md:col-span-5 h-full flex flex-col justify-between p-4 rounded-xl border border-neutral-850 bg-neutral-950/40 space-y-4">
-          <div className="space-y-3.5">
-            {/* Título do painel em fonte Saira */}
-            <div className="flex items-center justify-between select-none">
-              <div className="flex items-center space-x-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 animate-pulse" />
-                <h2 className="font-saira text-xs font-medium uppercase tracking-widest text-neutral-300">
-                  ENTRADAS LÓGICAS [IN]
-                </h2>
+        {/* COLUNA DA ESQUERDA - 5/12 DA LARGURA */}
+        <div className="md:col-span-5 flex flex-col gap-4 h-full min-h-0">
+          {/* MÓDULO 1: PAINEL DE CONTROLE (Compacto, sem espaço sobrando) */}
+          <section className="bento-box flex-none p-4 rounded-xl border-2 border-neutral-700/70 bg-neutral-950/40 space-y-4">
+            <div className="space-y-3.5">
+              {/* Título do painel em fonte Saira */}
+              <div className="flex items-center justify-between select-none">
+                <div className="flex items-center space-x-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 animate-pulse" />
+                  <h2 className="font-saira text-xs font-medium uppercase tracking-widest text-neutral-300">
+                    ENTRADAS LÓGICAS [IN]
+                  </h2>
+                </div>
+                <span className="font-mono text-[9px] text-neutral-500 tracking-wider font-bold">
+                  [GATE PANEL]
+                </span>
               </div>
-              <span className="font-mono text-[9px] text-neutral-500 tracking-wider font-bold">
-                [GATE PANEL]
-              </span>
+
+              {/* Os 3 switches interativos compactos */}
+              <div className="space-y-2.5">
+                <ToggleSwitch
+                  id="toggle-admin"
+                  label="Privilégio de Admin (A)"
+                  symbol="A"
+                  value={valA}
+                  onChange={setValA}
+                  description="Bypass completo de segurança. Concede acesso direto se ativo."
+                />
+                <ToggleSwitch
+                  id="toggle-password"
+                  label="Senha Correta (S)"
+                  symbol="S"
+                  value={valS}
+                  onChange={setValS}
+                  description="Primeiro fator de segurança. Requer segundo fator (T) ativo."
+                />
+                <ToggleSwitch
+                  id="toggle-token"
+                  label="Token Validado / 2FA (T)"
+                  symbol="T"
+                  value={valT}
+                  onChange={setValT}
+                  description="Segundo fator de segurança (2FA). Requer primeiro fator (S) ativo."
+                />
+              </div>
             </div>
 
-            {/* Os 3 switches interativos compactos */}
-            <div className="space-y-2.5">
-              <ToggleSwitch
-                id="toggle-admin"
-                label="Privilégio de Admin (A)"
-                symbol="A"
-                value={valA}
-                onChange={setValA}
-                description="Bypass completo de segurança. Concede acesso direto se ativo."
-              />
-              <ToggleSwitch
-                id="toggle-password"
-                label="Senha Correta (S)"
-                symbol="S"
-                value={valS}
-                onChange={setValS}
-                description="Primeiro fator de segurança. Requer segundo fator (T) ativo."
-              />
-              <ToggleSwitch
-                id="toggle-token"
-                label="Token Validado / 2FA (T)"
-                symbol="T"
-                value={valT}
-                onChange={setValT}
-                description="Segundo fator de segurança (2FA). Requer primeiro fator (S) ativo."
-              />
+            {/* Banner didático explicativo no rodapé do painel */}
+            <div className="p-3 rounded-lg border border-neutral-900 bg-neutral-950 flex items-start space-x-2.5 text-[9.5px] text-neutral-400 font-mono leading-relaxed select-none shrink-0">
+              <Info className="w-3.5 h-3.5 text-neutral-500 shrink-0 mt-0.5" />
+              <p>
+                Alterar qualquer interruptor [IN] propaga o sinal eletrônico pelas portas booleanas.
+                A saída final (L) é calculada no visor e gravada instantaneamente no terminal de auditoria.
+              </p>
             </div>
-          </div>
+          </section>
 
-          {/* Banner didático explicativo no rodapé do painel */}
-          <div className="p-3 rounded-lg border border-neutral-900 bg-neutral-950 flex items-start space-x-2.5 text-[9.5px] text-neutral-400 font-mono leading-relaxed select-none shrink-0">
-            <Info className="w-3.5 h-3.5 text-neutral-500 shrink-0 mt-0.5" />
-            <p>
-              Alterar qualquer interruptor [IN] propaga o sinal eletrônico pelas portas booleanas.
-              A saída final (L) é calculada no visor e gravada instantaneamente no terminal de auditoria.
-            </p>
-          </div>
-        </section>
+          {/* MÓDULO 3: TABELA-VERDADE COMPACTA (Ocupa o resto da coluna esquerda) */}
+          <section className="bento-box flex-1 min-h-0">
+            <TruthTable
+              valA={valA}
+              valS={valS}
+              valT={valT}
+            />
+          </section>
+        </div>
 
         {/* COLUNA DA DIREITA (7/12 DA LARGURA) */}
         <div className="md:col-span-7 flex flex-col gap-4 h-full min-h-0">
 
-          {/* MÓDULO 2: VISOR DE STATUS (ALTURA DE 38%) */}
-          <section className="bento-box h-[38%] min-h-0">
+          {/* MÓDULO 2: VISOR DE STATUS (Compacto) */}
+          <section className="bento-box flex-none">
             <StatusDisplay
               valA={valA}
               valS={valS}
@@ -247,24 +259,11 @@ export default function Home() {
             />
           </section>
 
-          {/* PARTE INFERIOR DA DIREITA (DIVIDIDA EM DOIS COMPONENTES DE ALTURA IGUAL) */}
-          <div className="h-[62%] grid grid-cols-1 sm:grid-cols-2 gap-4 min-h-0">
+          {/* MÓDULO 4: TERMINAL DE LOGS DE AUDITORIA (Ocupa o resto da coluna da direita) */}
+          <section className="bento-box flex-1 min-h-0">
+            <AuditLog logs={logs} />
+          </section>
 
-            {/* MÓDULO 3: TABELA-VERDADE COMPACTA */}
-            <section className="bento-box h-full min-h-0">
-              <TruthTable
-                valA={valA}
-                valS={valS}
-                valT={valT}
-              />
-            </section>
-
-            {/* MÓDULO 4: TERMINAL DE LOGS DE AUDITORIA */}
-            <section className="bento-box h-full min-h-0">
-              <AuditLog logs={logs} />
-            </section>
-
-          </div>
         </div>
 
       </main>

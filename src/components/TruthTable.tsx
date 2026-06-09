@@ -73,7 +73,7 @@ export default function TruthTable({ valA, valS, valT }: TruthTableProps) {
   return (
     <div
       ref={containerRef}
-      className="w-full h-full rounded-xl border border-neutral-800 bg-neutral-950/40 p-3.5 flex flex-col justify-between"
+      className="w-full h-full rounded-xl border-2 border-neutral-700/70 bg-neutral-950/40 p-3.5 flex flex-col justify-between"
     >
       {/* Título do painel usando a fonte Saira (Medium) e o estilo de circuito */}
       <div className="flex items-center space-x-2 select-none mb-1.5">
