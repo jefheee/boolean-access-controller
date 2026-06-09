@@ -1,65 +1,137 @@
-import Image from "next/image";
+"use client";
+
+import React, { useState } from "react";
+import ToggleSwitch from "@/components/ToggleSwitch";
+import StatusDisplay from "@/components/StatusDisplay";
+import TruthTable from "@/components/TruthTable";
+import { Info, Cpu, ShieldCheck } from "lucide-react";
 
 export default function Home() {
+  // 1. States for our Boolean variables
+  const [valA, setValA] = useState<boolean>(false);
+  const [valS, setValS] = useState<boolean>(false);
+  const [valT, setValT] = useState<boolean>(false);
+
+  // 2. Compute the result: L = A ∨ (S ∧ T)
+  const valL = valA || (valS && valT);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+    <main className="flex-1 w-full bg-black text-white flex flex-col justify-between min-h-screen">
+      {/* Container with grid */}
+      <div className="max-w-6xl w-full mx-auto px-4 py-8 md:py-12 flex-1 flex flex-col justify-center space-y-8">
+        
+        {/* Header Section */}
+        <header className="space-y-3 border-b border-neutral-900 pb-6">
+          <div className="flex items-center space-x-2">
+            <div className="p-1.5 rounded-lg bg-neutral-900 border border-neutral-800">
+              <Cpu className="w-5 h-5 text-white" />
+            </div>
+            <span className="font-mono text-xs font-semibold tracking-[0.2em] text-neutral-500 uppercase">
+              Micro-Simulador de Portas Lógicas
+            </span>
+          </div>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div>
+              <h1 className="text-2xl md:text-3xl font-mono tracking-tight font-bold text-neutral-100">
+                Boolean Access Controller
+              </h1>
+              <p className="text-xs text-neutral-500 max-w-xl mt-1 leading-relaxed">
+                Um simulador digital interativo concebido sob estética monocromática para demonstrar
+                matematicamente a liberação de portões sob a lógica de redundância de segurança.
+              </p>
+            </div>
+            {/* Short status badge */}
+            <div className="flex items-center space-x-2 self-start md:self-auto px-3 py-1.5 rounded-full border border-neutral-800 bg-neutral-900/40 text-[10px] font-mono">
+              <ShieldCheck className="w-3.5 h-3.5 text-neutral-400" />
+              <span className="text-neutral-400 uppercase">Fórmula: L = A ∨ (S ∧ T)</span>
+            </div>
+          </div>
+        </header>
+
+        {/* Core Simulation Area */}
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-stretch">
+          
+          {/* Left Panel: Control Toggles */}
+          <div className="flex flex-col space-y-6 p-6 rounded-2xl border border-neutral-900 bg-neutral-950/20 backdrop-blur-sm justify-between">
+            <div className="space-y-4">
+              <div className="flex items-center space-x-2">
+                <span className="w-2 h-2 rounded-full bg-neutral-700 animate-pulse" />
+                <h2 className="text-xs font-mono uppercase tracking-widest text-neutral-500">
+                  Painel de Controlo (Entradas)
+                </h2>
+              </div>
+              
+              <div className="space-y-4">
+                <ToggleSwitch
+                  id="toggle-admin"
+                  label="Privilégio de Administrador"
+                  symbol="A"
+                  value={valA}
+                  onChange={setValA}
+                  description="Bypass completo de autenticação. Concede acesso direto se ativo."
+                />
+                
+                <ToggleSwitch
+                  id="toggle-password"
+                  label="Senha Correta"
+                  symbol="S"
+                  value={valS}
+                  onChange={setValS}
+                  description="Primeiro fator de segurança. Requer segundo fator (T) para autorizar."
+                />
+                
+                <ToggleSwitch
+                  id="toggle-token"
+                  label="Token Validado / 2FA"
+                  symbol="T"
+                  value={valT}
+                  onChange={setValT}
+                  description="Segundo fator de segurança (2FA). Requer primeiro fator (S) para autorizar."
+                />
+              </div>
+            </div>
+
+            {/* Instruction tooltip card */}
+            <div className="mt-6 p-4 rounded-xl border border-neutral-900 bg-neutral-950 flex items-start space-x-3 text-[10px] text-neutral-500 font-mono">
+              <Info className="w-4 h-4 text-neutral-400 shrink-0 mt-0.5" />
+              <p className="leading-relaxed">
+                Interaja com os switches acima para alternar os estados binários (0 ou 1). 
+                Observe em tempo real a reavaliação da equação lógica e a reação visual
+                do indicador de acesso no painel lateral.
+              </p>
+            </div>
+          </div>
+
+          {/* Right Panel: Live Visualizer */}
+          <div>
+            <StatusDisplay
+              valA={valA}
+              valS={valS}
+              valT={valT}
+              valL={valL}
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          </div>
+        </section>
+
+        {/* Bottom Section: Collapsible Truth Table */}
+        <section>
+          <TruthTable
+            valA={valA}
+            valS={valS}
+            valT={valT}
+          />
+        </section>
+
+      </div>
+
+      {/* Elegant minimalist footer */}
+      <footer className="w-full border-t border-neutral-900 bg-neutral-950 py-6 text-center text-[10px] font-mono text-neutral-600 select-none">
+        <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+          <span>MICRO-SIMULADOR BOOLEANO v1.0.0</span>
+          <span>ESTADO ATUAL DO SINAL DE SAÍDA: L = {valL ? "1 (LIBERADO)" : "0 (NEGADO)"}</span>
+          <span>ANTIGRAVITY LABS</span>
         </div>
-      </main>
-    </div>
+      </footer>
+    </main>
   );
 }
