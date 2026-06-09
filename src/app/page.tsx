@@ -44,6 +44,9 @@ export default function Home() {
   // Estado para controlar se o Modal "Sobre o Projeto" está aberto ou fechado.
   const [isAboutOpen, setIsAboutOpen] = useState<boolean>(false);
 
+  // Estado reativo para controlar se o Modal com o QR Code de compartilhamento está aberto ou fechado.
+  const [isQrOpen, setIsQrOpen] = useState<boolean>(false);
+
   // Estado que acumula a lista de logs gerados no terminal.
   const [logs, setLogs] = useState<LogEntry[]>([]);
 
@@ -279,6 +282,14 @@ export default function Home() {
 
         {/* Lado direito: Ações e Botões de Redirecionamento e Pop-up */}
         <div className="flex items-center space-x-3.5">
+          {/* Botão discreto para compartilhar o Dashboard por QR Code */}
+          <button
+            onClick={() => setIsQrOpen(true)}
+            className="text-neutral-400 hover:text-[#FC8337] hover:border-[#FC8337]/50 transition-all duration-200 cursor-pointer font-roboto text-xs border border-neutral-800 px-3 py-1 rounded bg-neutral-950/80 active:scale-95"
+          >
+            [QR] Compartilhar Dashboard
+          </button>
+
           {/* Botão para abrir o Modal elegante com o contexto do projeto */}
           <button
             onClick={() => setIsAboutOpen(true)}
@@ -371,6 +382,54 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      {/* 9. MODAL INTERATIVO "COMPARTILHAR DASHBOARD" (POP-UP DO QR CODE) */}
+      {/* Esse bloco de código JSX condicional renderiza o modal do QR Code na tela quando o estado "isQrOpen" for verdadeiro */}
+      {isQrOpen && (
+        <div
+          onClick={() => setIsQrOpen(false)} // Clicar no backdrop escuro fecha o modal
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+        >
+          {/* Contêiner central compacto (Bento Box) do modal */}
+          <div
+            onClick={(e) => e.stopPropagation()} // Evita propagação de clique para não fechar o modal ao clicar dentro da caixinha
+            className="bg-neutral-950 border border-neutral-800 p-6 rounded-xl max-w-sm w-full space-y-4 shadow-[0_0_50px_rgba(252,131,55,0.06)] relative flex flex-col items-center"
+          >
+            {/* Cabeçalho do modal */}
+            <div className="w-full flex items-center justify-between select-none border-b border-neutral-900 pb-2">
+              <div className="flex items-center space-x-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#FC8337] animate-pulse" />
+                <h3 className="font-saira text-xs tracking-wider text-neutral-300 font-medium uppercase">
+                  Acesso Rápido
+                </h3>
+              </div>
+              {/* Botão fechar (X) discreto */}
+              <button
+                onClick={() => setIsQrOpen(false)}
+                className="text-neutral-500 hover:text-white transition-colors cursor-pointer p-0.5 rounded border border-neutral-900 bg-neutral-950"
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
+            </div>
+
+            {/* QR Code centralizado */}
+            <div className="relative p-2 bg-white rounded-lg flex items-center justify-center">
+              <Image
+                src="/assets/QRCODE-MCA.png"
+                alt="QR Code Acesso MCA"
+                width={250}
+                height={250}
+                className="object-contain"
+              />
+            </div>
+
+            {/* Link/Texto descritivo em fonte mono */}
+            <div className="text-neutral-400 text-xs font-mono text-center select-all">
+              boolean-ac.vercel.app
+            </div>
+          </div>
+        </div>
+      )}
 
       </main>
     </>
