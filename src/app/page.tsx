@@ -135,8 +135,22 @@ export default function Home() {
   return (
     <div
       ref={containerRef}
-      className="min-h-screen md:h-screen md:overflow-hidden bg-black text-white flex flex-col justify-between p-4 md:p-6 font-roboto space-y-4 relative"
+      className="min-h-screen md:h-screen md:overflow-hidden bg-transparent text-white flex flex-col justify-between p-4 md:p-6 font-roboto space-y-4 relative"
     >
+      {/* 
+        FUNDO DESFOCADO DE ALTA QUALIDADE (Estilo Gamma Slides)
+        Colocamos uma div absoluta com z-0 e uma imagem de alta qualidade com desfoque de 50% (blur-[30px]).
+        Deixamos a opacidade em 25% (opacity-25) para que o fundo continue muito sutil,
+        sem atrapalhar a leitura do texto ou contrastar demais com as cores laranja e branca.
+        A largura w-[110%] e as posições negativas previnem o efeito de borda vazada do desfoque.
+      */}
+      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+        <img
+          src="/assets/background.jpeg"
+          alt="Fundo Desfocado do Circuito"
+          className="w-[110%] h-[110%] object-cover opacity-25 blur-[30px] absolute -top-[5%] -left-[5%] select-none"
+        />
+      </div>
 
       {/* 5. BARRA DE CABEÇALHO DO APP */}
       <header className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-neutral-900 pb-3 shrink-0 gap-2 select-none z-10">

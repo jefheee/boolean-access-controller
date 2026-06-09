@@ -22,44 +22,15 @@
 }
 
 /* 
-  Configuração do body. Usamos position relative porque o fundo estrelado
-  vai ser colocado como um elemento absoluto colado atrás de todo o conteúdo.
+  Definimos o fundo preto no html e body para servir de base sólida do Dark Mode.
 */
-body {
-  background-color: var(--background);
+html, body {
+  background-color: #000000;
   color: var(--foreground);
   font-family: var(--font-roboto);
   position: relative;
   overflow-x: hidden;
-}
-
-/* 
-  EFEITO ESPACIAL (Fundo Desfocado - Estilo Slides do Gamma)
-  Usamos o pseudo-elemento ::before para injetar uma camada invisível a cliques (pointer-events: none),
-  posicionada de forma fixa (fixed) cobrindo toda a janela do navegador.
-  
-  Carregamos o background.jpeg do nosso projeto, colocamos background-size: cover,
-  background-position: center, aplicamos filter: blur(30px) para gerar 50% de desfoque,
-  e deixamos a opacidade bem sutil (opacity: 0.25) para que o fundo preserve totalmente 
-  o contraste das letras branca e laranja e garanta uma leitura impecável.
-  
-  Também estendemos a caixa com margens negativas (top/left/right/bottom: -20px) para que
-  as bordas desfocadas não vazem a tela de fundo (evitando o efeito de bordas brancas/transparentes).
-*/
-body::before {
-  content: "";
-  position: fixed;
-  top: -20px;
-  left: -20px;
-  right: -20px;
-  bottom: -20px;
-  pointer-events: none;
-  z-index: -1;
-  background-image: url("/assets/background.jpeg");
-  background-size: cover;
-  background-position: center;
-  filter: blur(30px);
-  opacity: 0.25;
+  height: 100%;
 }
 
 /* 
