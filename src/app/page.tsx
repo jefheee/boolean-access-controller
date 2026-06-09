@@ -1,6 +1,6 @@
 "use client";
 
-// Fala galera! Aqui a gente importa o React e os hooks que vão dar vida ao nosso simulador.
+// Aqui a gente importa o React e os hooks que vão dar vida ao nosso simulador.
 // - useState: serve pra guardar as variáveis na "memória" do navegador (tipo se o interruptor tá ligado ou desligado).
 // - useEffect: roda um código extra sempre que alguma variável específica mudar (bom para gerar novos logs!).
 // - useRef: cria uma "âncora" para elementos do HTML para podermos manipulá-los no GSAP ou no scroll.
@@ -102,7 +102,7 @@ export default function Home() {
 
   useEffect(() => {
     const time = new Date().toLocaleTimeString("pt-PT", { hour12: false });
-    
+
     // Objeto formatado com os sinais de entrada atuais [IN] e a saída avaliada [OUT].
     const newLog: LogEntry = {
       id: `${Date.now()}-${Math.random()}`,
@@ -137,7 +137,7 @@ export default function Home() {
       ref={containerRef}
       className="min-h-screen md:h-screen md:overflow-hidden bg-black text-white flex flex-col justify-between p-4 md:p-6 font-roboto space-y-4 relative"
     >
-      
+
       {/* 5. BARRA DE CABEÇALHO DO APP */}
       <header className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-neutral-900 pb-3 shrink-0 gap-2 select-none z-10">
         <div className="flex items-center space-x-2">
@@ -157,7 +157,7 @@ export default function Home() {
 
       {/* 6. GRADE BENTO BOX (LAYOUT DE PAINEL ÚNICO NO DESKTOP) */}
       <main className="flex-1 grid grid-cols-1 md:grid-cols-12 gap-4 min-h-0 z-10">
-        
+
         {/* MÓDULO 1: PAINEL DE CONTROLE (COLUNA DA ESQUERDA - 5/12 DA LARGURA) */}
         <section className="bento-box md:col-span-5 h-full flex flex-col justify-between p-4 rounded-xl border border-neutral-850 bg-neutral-950/20 backdrop-blur-sm space-y-4">
           <div className="space-y-3.5">
@@ -215,7 +215,7 @@ export default function Home() {
 
         {/* COLUNA DA DIREITA (7/12 DA LARGURA) */}
         <div className="md:col-span-7 flex flex-col gap-4 h-full min-h-0">
-          
+
           {/* MÓDULO 2: VISOR DE STATUS (ALTURA DE 38%) */}
           <section className="bento-box h-[38%] min-h-0">
             <StatusDisplay
@@ -228,7 +228,7 @@ export default function Home() {
 
           {/* PARTE INFERIOR DA DIREITA (DIVIDIDA EM DOIS COMPONENTES DE ALTURA IGUAL) */}
           <div className="h-[62%] grid grid-cols-1 sm:grid-cols-2 gap-4 min-h-0">
-            
+
             {/* MÓDULO 3: TABELA-VERDADE COMPACTA */}
             <section className="bento-box h-full min-h-0">
               <TruthTable
@@ -250,7 +250,7 @@ export default function Home() {
 
       {/* 7. RODAPÉ DO SIMULADOR (RODAPÉ ATUALIZADO SEM LABELS EXCESSIVOS) */}
       <footer className="w-full border-t border-neutral-900 pt-2 text-center text-[10px] font-mono text-neutral-500 select-none flex flex-col sm:flex-row items-center justify-between shrink-0 gap-3 z-10">
-        
+
         {/* Lado esquerdo: Versão do Simulador */}
         <div className="flex items-center space-x-2">
           <span className="w-1.5 h-1.5 rounded-full bg-[#FC8337] animate-pulse" />
@@ -266,7 +266,7 @@ export default function Home() {
           >
             Sobre o Projeto
           </button>
-          
+
           {/* Link para o GitHub do Jefherson com a logo do GitHub */}
           <a
             href="https://github.com/jefheee/boolean-access-controller"
@@ -274,19 +274,17 @@ export default function Home() {
             rel="noopener noreferrer"
             className="flex items-center space-x-1.5 text-neutral-400 hover:text-[#FC8337] hover:border-[#FC8337]/50 transition-all duration-200 font-saira font-medium text-[10px] tracking-wider uppercase border border-neutral-800 px-3 py-1 rounded bg-neutral-950/80 active:scale-95"
           >
-            {/* Desenhamos o ícone do GitHub direto no SVG para evitar problemas com remoção de ícones de marcas no Lucide */}
             <svg
+              xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
-              width="14"
-              height="14"
+              fill="none"
               stroke="currentColor"
               strokeWidth="2"
-              fill="none"
               strokeLinecap="round"
               strokeLinejoin="round"
               className="w-3.5 h-3.5 shrink-0"
             >
-              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
             </svg>
             <span>GitHub</span>
           </a>
@@ -326,7 +324,7 @@ export default function Home() {
           {/* Texto de descrição do projeto em fonte Roboto */}
           <div className="font-roboto text-xs text-neutral-300 space-y-3 leading-relaxed">
             <p>
-              Fala galera! Este simulador foi desenvolvido pelo <strong>Jefherson</strong> para 
+              Fala galera! Este simulador foi desenvolvido pelo <strong>Jefherson</strong> para
               aulas de <em>Matemática Computacional e Lógica Digital</em>. O objetivo é demonstrar,
               de forma clara e interativa, um circuito digital de redundância física usado em controle de acessos.
             </p>
@@ -336,8 +334,8 @@ export default function Home() {
               OU se o usuário digitar a Senha correta (<code className="font-mono font-bold">S</code>) e tiver o Token 2FA (<code className="font-mono font-bold">T</code>) validado.
             </p>
             <p>
-              Tudo foi implementado usando <strong>Next.js</strong> e <strong>TypeScript</strong> para termos tipagem estática e segura. 
-              As animações foram feitas com <strong>GSAP</strong> para ficarem ultra-suaves, e o design Bento Box segue uma estética 
+              Tudo foi implementado usando <strong>Next.js</strong> e <strong>TypeScript</strong> para termos tipagem estática e segura.
+              As animações foram feitas com <strong>GSAP</strong> para ficarem ultra-suaves, e o design Bento Box segue uma estética
               monocromática premium com estrelas estáticas de fundo e detalhes destacados no laranja hexadecimal <strong>#FC8337</strong>.
             </p>
           </div>
